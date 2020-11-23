@@ -24,4 +24,5 @@ jobs:
         external_repository: dylan-smith/wd-test
         personal_token: ${{ secrets.TESTING_TOKEN }}
         commit_message: ${{ github.event.head_commit.message }}
+        exclude_assets: 'CNAME'
       
