@@ -21,6 +21,7 @@ jobs:
       if: github.event_name == 'pull_request'
       run: |
         git clone --depth=1 --single-branch --branch gh-pages https://dylan-smith:${{ secrets.TESTING_TOKEN }}@github.com/dylan-smith/wd-test.git /home/runner/temp_publish
+        cd /homer/runner/temp_publish
         git rm -r --ignore-unmatch *
         cd /home/runner/temp_publish
         cp /home/runner/work/western-devs-website/western-devs/website/public/.*
