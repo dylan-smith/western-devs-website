@@ -22,7 +22,9 @@ jobs:
       run: |
         git config --global user.email "wd@westerndevs.com"
         git config --global user.name "Western Devs"
-        git branch pr-temp
+        echo blah
+        git switch -c pr-temp
+        echo foo
         git add .
         git commit -m "Publishing PR for testing"
         git remote add testing https://dylan-smith:${{ secrets.TESTING_TOKEN }}@github.com/dylan-smith/wd-test.git
