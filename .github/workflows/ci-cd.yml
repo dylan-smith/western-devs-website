@@ -20,13 +20,15 @@ jobs:
     - name: Deploy PR to Test Site
       if: github.event_name == 'pull_request'
       run: |
-        git config --global user.email "wd@westerndevs.com"
-        git config --global user.name "Western Devs"
-        echo blah
-        git switch -c pr-temp
-        echo foo
-        git add .
-        git commit -m "Publishing PR for testing"
-        git remote add testing https://dylan-smith:${{ secrets.TESTING_TOKEN }}@github.com/dylan-smith/wd-test.git
-        git push testing gh-pages
+        git clone --depth=1 --single-branch --branch gh-pages https://dylan-smith:${{ secrets.TESTING_TOKEN }}@github.com/dylan-smith/wd-test.git /home/runner/temp_publish
+        git rm -r --ignore-unmatch *
+        cd /home/runner/temp_publish
+        cp /home/runner/work/western-devs-website/western-devs/website/public/.*
+        git remote rm origin
+        git remote add origin https://dylan-smith:${{ secrets.TESTING_TOKEN }}@github.com/dylan-smith/wd-test.git
+        git add --all
+        git config user.email "wd@westerndevs.com"
+        git config user.name "Western Devs"
+        git commit -m "publishing PR for testing"
+        git push origin gh-pages
       
